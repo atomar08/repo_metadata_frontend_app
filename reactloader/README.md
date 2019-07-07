@@ -1,9 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## First time configuration
-
-### `rm -rf node_modules && npm install`
-
 ## Available Scripts
 
 In the project directory, you can run:
