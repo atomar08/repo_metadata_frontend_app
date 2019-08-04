@@ -4,15 +4,10 @@ import axios from 'axios';
 //import Table from './Components/table';
 import Spinner from 'react-bootstrap/Spinner';
 import filterFactory,{textFilter} from 'react-bootstrap-table2-filter';
-import paginationFactory from 'react-bootstrap-table2-paginator';
+//import pagination from 'react-js-pagination';
 import BootstrapTable from 'react-bootstrap-table-next';
 
-//const RenderRow = (props) =>{
-// return props.keys.
-//map((key, index)=>{
-// return <td key={props.data[key]}>{props.data[key]}</td>
-// })
-//}
+
 
 class Form extends Component {
   constructor () {
@@ -20,55 +15,43 @@ class Form extends Component {
     this.state = {
         onClick:false,
         metadata: [],
-  }
+        repo_name: '', project_name: '',
+        // activePage: 15
+  };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
- //this.handleClick = this.handleClick.bind(this);
+    this.handleChange1 = this.handleChange1.bind(this);
 }
 
-//getKeys = function(){
-// return
-//Object.keys(this.props.data[0]); }
-//
-//getHeader = function(){
-// var keys = this.getKeys();
-// return
-//keys.map((key, index)=>{
-// return <th key={key}>{key.toUpperCase()}</th>
-// })
-// }
-//
-//getRowsData = function(){
-// var items = this.props.data;
-// var keys = this.getKeys();
-// return items.
-//map((row, index)=>{
-// return <tr key={index}><RenderRow key={index} data={row} keys={keys}/></tr>
-// })
-// }
 
-    // if (this.state.value!=null) {
+
 buttonClick=()=>{
     const doesShow= this.state.onClick;
     this.setState({onClick: !doesShow});
     console.log("came here");
-    fetch('http://127.0.0.1:8000/git/get_commits?repo_name=cs537&project_name=atomar08')
+    fetch('http://127.0.0.1:8000/git/validate_repository?repo_name='+this.state.repo_name+'&project_name='+this.state.project_name)
+    fetch('http://127.0.0.1:8000/git/get_commits?repo_name='+this.state.repo_name+'&project_name='+this.state.project_name)
+
     .then(results => results.json())
     .then(data => this.setState({ metadata: data.metadata }))
     .then(results => console.log(results));
 }
+
 render () {
-    // let data;
-    // if (this.state.loading) {
-    //   data = <img  data-src={ require('../images/giphy.gif') } />
-    // }
-    // else{
+
 return (
 <form onSubmit={this.handleSubmit}>
  <div >
- <input type="text" ref={input => this._name = input} style={{ margin:"100px auto", display:"block" }} placeholder="Enter user name" type="P" name="username" value={this.state.value} onChange={this.handleChange} required/>
+
+ <input type="text" ref={input => this.reponame = input}
+ style={{ margin:"100px auto", display:"block" }} placeholder="Enter repo name" name="reponame"
+ value={this.state.repo_name} onChange={this.handleChange} required/>
+
+ <input type="text" ref={input => this.name = input} style={{ margin:"100px auto", display:"block" }}
+  placeholder="Enter name" name="name" value={this.state.project_name} onChange={this.handleChange1} required/>
+
 <div className='button__container'>
-<button className='button'  onClick={this.buttonClick} style={{ margin:"100px auto", display:"block" }}>Get Employees</button>
+<button className='button'  onClick={this.buttonClick} style={{ margin:"100px auto", display:"block" }}>Get data</button>
 {
     this.state.onClick ==true?
     <div className="search-results" style={{ marginTop: 10 }} >
@@ -107,14 +90,26 @@ return (
 </form>
 )}
 
+
 handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({repo_name: event.target.value});
+
+//    this.setState({ [event.target.name]: event.target.value });
   }
 
+  handleChange1(event) {
+  this.setState({project_name: event.target.value});
+    }
+
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('A name was submitted: ' + this.state.repo_name +'A name was submitted: '+ this.state.project_name);
+
     event.preventDefault();
+    // alert('A name was submitted: ' + this.state.value1 );
+    //     event.preventDefault();
   }
+
+
 }
 
 export default Form;
