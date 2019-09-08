@@ -24,7 +24,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-
     }
   }
 
@@ -57,7 +56,6 @@ class App extends Component {
                   <Route path="/map1" component={GoogleMapsContainer} />
                   <Route path="/table" component={Table} />
                 </div>
-
               </div>
 
             </HashRouter>
