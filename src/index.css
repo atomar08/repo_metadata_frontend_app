@@ -17,7 +17,7 @@ ul.header li a {
   color: #ddd;
   font-weight: bold;
   text-decoration: none;
-  padding: 5px;
+  padding: 8px;
   display: inline-block;
 }
 
@@ -58,6 +58,38 @@ h6 {
  padding-bottom:100px;
  background-repeat: repeat;
 } */
+ label {
+ color: #fff!important;
+ }
+ .button__container {
+   margin-top: 70px;
+   text-align: center;
+ }
+ .button {
+   background-color:grey;
+   border: none;
+   color: white;
+   position:left;
+   font-size: 16px;
+   height: 40px;
+   width: 180px;
+ }
+ move-me {
+   display: inline-block;
+   padding: 0px;
+   color: red;
+   position: 120px;
+   margin: 0 0 0px 0;
+ }
+ .move-me-1 {
+   animation: move-in-steps 8s steps(4) infinite;
+ }
+ .move-me-2 {
+   animation: move-in-steps 8s steps(4, start) infinite;
+ }
+ .move-me-3 {
+   animation: move-in-steps 8s infinite;
+ }
 
 label {
   color: #fff!important;
@@ -135,14 +167,13 @@ body {
  } */
 
 .bg {
-  /*background-image: url("http://www.technocrazed.com/wp-content/uploads/2015/12/Landscape-wallpaper-8.jpg");*/
-  background-image: url("");
-  background-position: center;
-  background-repeat: repeat;
-  background-size: cover;
-  background-color: "";
-  height: absolute;
-}
+   background-image: url("");
+   background-position: center;
+   background-repeat: repeat;
+   background-size: cover;
+   background-color: "";
+   height: absolute;
+ }
 
 /* .bg {
    background-image: url();
