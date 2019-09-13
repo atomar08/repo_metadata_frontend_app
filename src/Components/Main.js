@@ -20,9 +20,9 @@ class Main extends Component {
             <li><NavLink to="/Dashboard">dashboard</NavLink></li>
           </ul>
           <div className="content">
-            <Route path="/" component={Home}/>
-            <Route path="/About" component={Stuff}/>
-            <Route path="/Dashboard" component={Contact}/>
+            <Route path="/" component={Home} />
+            <Route path="/About" component={Stuff} />
+            <Route path="/Dashboard" component={Contact} />
           </div>
         </div>
       </HashRouter>

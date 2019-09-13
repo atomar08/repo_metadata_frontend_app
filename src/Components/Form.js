@@ -12,8 +12,16 @@ class Form extends Component {
     super()
     this.state = {
       onClick: false,
+      data: null,
+      serverdata: [],
       metadata: [],
-      repo_name: '', project_name: '',
+      repo_name: '',
+      project_name: '',
+      current_page_number: -1,
+      total_number_of_pages: '',
+      total_number_of_commits: '',
+      has_next_page: false,
+      has_previous_page: false,
       // activePage: 15
     };
     this.handleChange = this.handleChange.bind(this);
@@ -21,31 +29,71 @@ class Form extends Component {
     this.handleChange1 = this.handleChange1.bind(this);
   }
 
-
-
   buttonClick = () => {
     const doesShow = this.state.onClick;
     this.setState({ onClick: !doesShow });
-    console.log("came here");
-    fetch('http://127.0.0.1:8001/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name)
-    fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name)
+    console.log("in button click");
+    fetch('http://127.0.0.1:8000/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name)
+    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name)
       .then(results => results.json())
-      .then(data => this.setState({ metadata: data.metadata }))
-      .then(results => console.log(results));
+      .then(data => this.setState({
+        serverdata: data.metadata,
+        current_page_number: data.current_page_number,
+        has_next_page: data.has_next_page,
+        has_previous_page: data.has_previous_page
+      }))
+      .then(body => console.log(body));
   }
 
   buttonPrevious = () => {
-    fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name + '&page_number=' + this.setState({ page_number: this.state.page_number - 1 }))
+    console.log("in Previous button" + this.state.repo_name + " " +this.state.project_name + " current page number: " + this.state.current_page_number)
+    let prev_page_no = this.state.current_page_number;
+    prev_page_no--
+    console.log("previous page number: " + prev_page_no)
+    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name + '&page_number=' + prev_page_no)
+      .then(results => results.json())
+      .then(data => this.setState({
+        serverdata: data.metadata,
+        current_page_number: data.current_page_number,
+        has_next_page: data.has_next_page,
+        has_previous_page: data.has_previous_page
+      }))
+      .then(results => console.log(results))
+    console.log("done buttonPrevious")
   }
 
   buttonNext = () => {
-    fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name + '&page_number=' + this.setState({ page_number: this.state.page_number + 1 }))
+    console.log("in next button " + this.state.repo_name + " " + this.state.project_name + " current page number: " + this.state.current_page_number)
+    let next_page_no = this.state.current_page_number;
+    next_page_no++
+    console.log("next page number: " + next_page_no)
+    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' + this.state.project_name + '&page_number=' + next_page_no)
       .then(results => results.json())
+      .then(data => this.setState({
+        serverdata: data.metadata,
+        current_page_number: data.current_page_number,
+        has_next_page: data.has_next_page,
+        has_previous_page: data.has_previous_page
+      }))
       .then(results => console.log(results))
-      console.log("done buttonNext")
+    console.log("done buttonNext: ")
   }
 
   render() {
+    let buttonPrevious, buttonNext;
+    const { serverdata, has_next_page, has_previous_page } = this.state;
+    console.log("in render has_next_page: ", has_next_page)
+    console.log("in render has_previous_page: ", has_previous_page)
+
+    if (has_previous_page) {
+      buttonPrevious = <button className='button' onClick={this.buttonPrevious} style={{ margin: "2px auto", display: "block" }}>Previous</button>
+    }
+
+    if (has_next_page) {
+      buttonNext = <button className='button' onClick={this.buttonNext} style={{ margin: "2px auto", display: "block" }}>Next</button>
+    }
+
+    console.log("going to call return")
     return (
       <form onSubmit={this.handleSubmit}>
         <div >
@@ -77,7 +125,7 @@ class Form extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        {this.state.metadata.map(commit => (
+                        {this.state.serverdata.map(commit => (
                           <tr>
                             <td scope="row">{commit.commit_no}</td>
                             <td>{commit.commit_id}</td>
@@ -89,11 +137,12 @@ class Form extends Component {
                           </tr>
                         ))}
                       </tbody>
-
                     </table>
                   </div>
-                  <button className='button' onClick={this.buttonPrevious} style={{ margin: "2px auto", display: "block" }}>previous</button><button className='button' onClick={this.buttonNext} style={{ margin: "2px auto", display: "block" }}>Next</button>
-
+                  {buttonPrevious}
+                  {buttonNext}
+                  {/* <button className='button' onClick={this.buttonPrevious} style={{ margin: "2px auto", display: "block" }}>Previous</button> */}
+                  {/* <button className='button' onClick={this.buttonNext} style={{ margin: "2px auto", display: "block" }}>Next</button> */}
                 </div> : null
             }
           </div>
@@ -113,7 +162,7 @@ class Form extends Component {
 
   handleSubmit(event) {
     console.log("in handleSubmit event")
-    alert('Repository name ' + this.state.repo_name + ' and project name ' + this.state.project_name + ' submitted.');
+    // alert('Repository name ' + this.state.repo_name + ' and project name ' + this.state.project_name + ' submitted.');
     event.preventDefault();
   }
 }
