@@ -13,7 +13,7 @@ import {
   HashRouter
 } from "react-router-dom";
 import Home from "./Components/Home";
-import About from "./Components/About";
+import search from "./Components/search";
 import Dashboard from "./Components/Dashboard";
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import Spinner from 'react-bootstrap/Spinner';
@@ -30,35 +30,36 @@ class App extends Component {
   render() {
     return (
       <div>
-       
+
         <form>
           <div className="bg">
             <HashRouter>
               <div className="bg">
                 <ul className="header" style={{ fontSize: '15px',  width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
                   <li><NavLink to="/">Home</NavLink></li>
+                   <li><NavLink to="/">search</NavLink></li>
                   <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
-                  <li><NavLink to="/map1">Map</NavLink></li>
-                  
+                 // <li><NavLink to="/map1">Map</NavLink></li>
+
                 </ul>
-                
+
                 <Form />
 
                 <div className="bg">
                   <Route path="/Form" component={Home} />
-                  <Route path="/About" component={About} />
+                  <Route path="/search" component={search} />
                   <Route path="/Dashboard" component={Dashboard} />
                   <Route path="/map1" component={GoogleMapsContainer} />
-                 
+
                 </div>
               </div>
 
             </HashRouter>
           </div>
           <Footer/>
-          
+
         </form>
-        
+
       </div>
     );
   }

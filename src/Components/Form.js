@@ -9,8 +9,6 @@ import { textFilter } from 'react-bootstrap-table2-filter';
 import BootstrapTable from 'react-bootstrap-table-next';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Select from 'react-select'
-
 
 class Form extends Component {
   constructor() {
@@ -34,6 +32,7 @@ class Form extends Component {
       has_previous_page: false,
       display_no_of_records: 5,
       // activePage: 15
+      search:''
     };
 
     // Binding Event Handler: binding is required for all methods which uses const values
@@ -49,11 +48,18 @@ class Form extends Component {
     // this.buttonNext = this.buttonNext.bind(this);
   }
 
+
+  // renderCommit=commit=>{
+  //     const {search}=this.state;
+  //     if(search!=="" && commit_id.indexof(search)==-1){
+  //         return null
+  //     }
+  // }
   validate_repository = () => {
     // const doesShow = this.state.onClick;
     // this.setState({ onClick: !doesShow }); validated
     console.log("in validate repository: ", this.state.validated);
-    fetch('http://127.0.0.1:8000/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch('http://127.0.0.1:8001/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name)
       // .then(response => response.text())
       // .then(data => this.setState({
@@ -63,14 +69,21 @@ class Form extends Component {
       // =====or=====
       .then(response => {
         if (response.status == 200) {
+          alert('valid repository')
           this.setState({
             validated: true,
             onClick: false,
+            repo_name:"",
+            project_name:""
+
           })
         } else if (response.status == 404) {
+        alert('invalid repository')
           this.setState({
             validated: false,
             onClick: false,
+            repo_name:"",
+            project_name:""
           })
         }
       })
@@ -86,7 +99,7 @@ class Form extends Component {
       // this.setState({ onClick: !doesShow });
       this.setState({ onClick: true })
       console.log("in button click and repo is already validated");
-      fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name +
+      fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name +
         '&project_name=' + this.state.project_name + '&records_per_page=' + this.state.display_no_of_records)
         .then(results => results.json())
         .then(data => this.setState({
@@ -122,7 +135,7 @@ class Form extends Component {
     // console.log(this.state.current_page_number)
 
     console.log("previous page number: " + prev_page_no)
-    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + prev_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
       .then(data => this.setState({
@@ -141,7 +154,7 @@ class Form extends Component {
     let next_page_no = this.state.current_page_number;
     next_page_no++
     console.log("next page number: " + next_page_no)
-    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + next_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
       .then(data => this.setState({
@@ -219,14 +232,14 @@ class Form extends Component {
                   <select value={this.state.display_no_of_records} onChange={ this.handleNoOfRecordsChange} >
                     <option value="5" >5</option>
                     <option value="10" >10</option>
-                    <option value="15" >15</option> 
+                    <option value="15" >15</option>
                   </select>
                 </div>
                 {buttonPrevious}
                 {buttonNext}
               </div> : null // display message from return statement in place of null
           }
-        </div> 
+        </div>
       </form>
     )
   }
@@ -234,7 +247,7 @@ class Form extends Component {
   handleChange(event) {
     this.setState({
       repo_name: event.target.value,
-      validated: false
+      validated: false,
     });
   }
 
@@ -242,7 +255,7 @@ class Form extends Component {
     console.log("in handlechange1 ", this.state.project_name)
     this.setState({
       project_name: event.target.value,
-      validated: false
+      validated: false,
     });
     console.log("completed handlechange1 ", this.state.project_name)
   }
@@ -261,7 +274,7 @@ class Form extends Component {
     // alert('Repository name ' + this.state.repo_name + ' and project name ' + this.state.project_name + ' submitted.');
     // alert(`Repository name ${this.state.repo_name} and project name ${this.state.project_name} submitted.`);
 
-    // below method will prevent data from getting lost. Other wise after clicking on alert pop data in 
+    // below method will prevent data from getting lost. Other wise after clicking on alert pop data in
     // box will be lost
     event.preventDefault();
   }
