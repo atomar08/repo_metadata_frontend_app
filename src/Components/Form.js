@@ -32,7 +32,7 @@ class Form extends Component {
       has_previous_page: false,
       display_no_of_records: 5,
       // activePage: 15
-      search:''
+      search: ''
     };
 
     // Binding Event Handler: binding is required for all methods which uses const values
@@ -48,53 +48,45 @@ class Form extends Component {
     // this.buttonNext = this.buttonNext.bind(this);
   }
 
-
-  // renderCommit=commit=>{
-  //     const {search}=this.state;
-  //     if(search!=="" && commit_id.indexof(search)==-1){
-  //         return null
-  //     }
-  // }
   validate_repository = () => {
-    // const doesShow = this.state.onClick;
-    // this.setState({ onClick: !doesShow }); validated
-    console.log("in validate repository: ", this.state.validated);
-    fetch('http://127.0.0.1:8001/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
-      this.state.project_name)
-      // .then(response => response.text())
-      // .then(data => this.setState({
-      //   valid_message: data
-      // }))
-      // .then(body => console.log("validate completed: ", this.state.valid_message));
-      // =====or=====
-      .then(response => {
-        if (response.status == 200) {
-          alert('valid repository')
-          this.setState({
-            validated: true,
-            onClick: false,
-            repo_name:"",
-            project_name:""
-
-          })
-        } else if (response.status == 404) {
-        alert('invalid repository')
-          this.setState({
-            validated: false,
-            onClick: false,
-            repo_name:"",
-            project_name:""
-          })
-        }
-      })
-      .then(body => console.log("validate completed: ", this.state.validated));
+    console.log("in validate repository: ", this.state.repo_name, this.state.project_name);
+    if (this.state.repo_name != "" && this.state.project_name != "") {
+      fetch('http://127.0.0.1:8001/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
+        this.state.project_name)
+        // .then(response => response.text())
+        // .then(data => this.setState({
+        //   valid_message: data
+        // }))
+        // .then(body => console.log("validate completed: ", this.state.valid_message));
+        // =====or=====
+        .then(response => {
+          if (response.status == 200) {
+            alert('valid repository')
+            this.setState({
+              validated: true,
+              onClick: false,
+            })
+          } else if (response.status == 404) {
+            alert('invalid repository')
+            this.setState({
+              validated: false,
+              onClick: false,
+              repo_name: "",
+              project_name: ""
+            })
+          }
+        })
+        .then(body => console.log("validate completed: ", this.state.validated));
+    } else {
+      console.log("in validate_repository else part")
+      return <div>Please fill repo & project to validate</div>
+    }
   }
 
   // = () => { causing event binding due to which we can change state values in method
   // their are many types of event binding one bind in constructor other using arrow method declaration
   buttonClick = () => {
-    //  VPSC: add a check to verify repo & project name are not empty
-    if (this.state.repo_name != null && this.state.project_name != null && this.state.validated) {
+    if (this.state.repo_name != "" && this.state.project_name != "" && this.state.validated) {
       // const doesShow = this.state.onClick;
       // this.setState({ onClick: !doesShow });
       this.setState({ onClick: true })
@@ -229,7 +221,7 @@ class Form extends Component {
                   {/* Select sample impl: https://scriptverse.academy/tutorials/reactjs-select.html */}
                   {/* https://appdividend.com/2018/10/19/react-dropdown-select-example-tutorial/ */}
                   {/* <Select options={noOfRecordsPerPageList} value={this.state.display_no_of_records} onChange={this.handleNoOfRecordsChange} onInputChange={this.updateNoofRecords}/> */}
-                  <select value={this.state.display_no_of_records} onChange={ this.handleNoOfRecordsChange} >
+                  <select value={this.state.display_no_of_records} onChange={this.handleNoOfRecordsChange} >
                     <option value="5" >5</option>
                     <option value="10" >10</option>
                     <option value="15" >15</option>

@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import Form from './Components/Form';
 import Footer from './Components/Footer';
-//import Footer from './Components/footer';
-import {Image} from 'react-bootstrap';
 import GoogleMapsContainer from './Components/map1';
-import ReactDOM from 'react-dom';
-import Tab from './Components/experiment';
-import Table from './Components/table';
 import {
   Route,
   NavLink,
   HashRouter
 } from "react-router-dom";
 import Home from "./Components/Home";
-import search from "./Components/search";
+// import search from "./Components/search";
 import Dashboard from "./Components/Dashboard";
-import { Map, GoogleApiWrapper } from 'google-maps-react';
-import Spinner from 'react-bootstrap/Spinner';
 //import BarChart from './Components/BarChart';
 
 
@@ -47,7 +40,7 @@ class App extends Component {
 
                 <div className="bg">
                   <Route path="/Form" component={Home} />
-                  <Route path="/search" component={search} />
+                  {/* <Route path="/search" component={search} /> */}
                   <Route path="/Dashboard" component={Dashboard} />
                   <Route path="/map1" component={GoogleMapsContainer} />
 
