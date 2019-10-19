@@ -1,21 +1,13 @@
 // Doc: https://www.digitalocean.com/community/tutorials/how-to-display-data-from-the-digitalocean-api-with-react
 // React tutorial: https://www.youtube.com/watch?v=DyPkojd1fas&list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3&index=24
 import React, { Component } from "react";
-
-//import Table from './Components/table';
-import Spinner from 'react-bootstrap/Spinner';
-import { textFilter } from 'react-bootstrap-table2-filter';
-//import pagination from 'react-js-pagination';
-import BootstrapTable from 'react-bootstrap-table-next';
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Dashboard from "./Dashboard";
 
 class Form extends Component {
   constructor() {
     super()
     this.state = {
       validated: false,
-      // onClick: true,
       valid_message: "",
       data: null,
       serverdata: [],
@@ -31,7 +23,7 @@ class Form extends Component {
       has_next_page: false,
       has_previous_page: false,
       display_no_of_records: 5,
-      // activePage: 15
+      author_name_commit_dic: {},
       search: ''
     };
 
@@ -43,7 +35,7 @@ class Form extends Component {
 
     // Binding event handler: buttonClick, button
     // please test do below code break app:
-    // this.buttonClick = this.buttonClick.bind(this);
+    this.buttonClick = this.buttonClick.bind(this);
     // this.buttonPrevious = this.buttonPrevious.bind(this);
     // this.buttonNext = this.buttonNext.bind(this);
   }
@@ -85,12 +77,37 @@ class Form extends Component {
 
   // = () => { causing event binding due to which we can change state values in method
   // their are many types of event binding one bind in constructor other using arrow method declaration
-  buttonClick = () => {
+  // buttonClick = () => {
+  //   if (this.state.repo_name != "" && this.state.project_name != "" && this.state.validated) {
+  //     this.setState({ onClick: true })
+  //     console.log("in button click and repo is already validated");
+  //     fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name +
+  //       '&project_name=' + this.state.project_name + '&records_per_page=' + this.state.display_no_of_records)
+  //       .then(results => results.json())
+  //       .then(data => this.setState({
+  //         serverdata: data.metadata,
+  //         current_page_number: data.current_page_number,
+  //         has_next_page: data.has_next_page,
+  //         has_previous_page: data.has_previous_page
+  //       }))
+  //       .then(body => console.log(body));
+  //   } else {
+  //     console.log("in button click else part")
+  //     return <div>Please fill repo & project and validate repository</div>
+  //   }
+  // }
+
+  buttonClick() {
+    console.log("in buttonClick: ", this.state.repo_name, this.state.project_name, this.state.validated);
     if (this.state.repo_name != "" && this.state.project_name != "" && this.state.validated) {
-      // const doesShow = this.state.onClick;
-      // this.setState({ onClick: !doesShow });
-      this.setState({ onClick: true })
-      console.log("in button click and repo is already validated");
+      this.setState({ 
+        onClick: true,
+        serverdata: [],
+        current_page_number: -1,
+        has_next_page: false,
+        has_previous_page: false,
+      })
+      
       fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name +
         '&project_name=' + this.state.project_name + '&records_per_page=' + this.state.display_no_of_records)
         .then(results => results.json())
@@ -100,8 +117,11 @@ class Form extends Component {
           has_next_page: data.has_next_page,
           has_previous_page: data.has_previous_page
         }))
-        .then(body => console.log(body));
+        // .then(body => console.log(data));
+
+        console.log("Forms completed buttonClick: ", this.state.current_page_number)
     } else {
+      console.log("in button click else part")
       return <div>Please fill repo & project and validate repository</div>
     }
   }
@@ -115,8 +135,8 @@ class Form extends Component {
     let prev_page_no = this.state.current_page_number;
     prev_page_no--
 
-    // if you want to chnage state value in function you have to use this.setState() ex:
-    // below code is just an example of how to chnage state value inside method
+    // if you want to change state value in function you have to use this.setState() ex:
+    // below code is just an example of how to change state value inside method
     // this.setState = {
     //   current_page_number = this.state.current_page_number - 1
     // }, () => {
@@ -126,7 +146,7 @@ class Form extends Component {
     // but actual value have been updated by setState()
     // console.log(this.state.current_page_number)
 
-    console.log("previous page number: " + prev_page_no)
+    // console.log("previous page number: " + prev_page_no)
     fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + prev_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
@@ -137,7 +157,7 @@ class Form extends Component {
         has_previous_page: data.has_previous_page
       }))
       .then(results => console.log(results))
-    console.log("done buttonPrevious")
+    // console.log("done buttonPrevious")
   }
 
   buttonNext = () => {
@@ -145,7 +165,7 @@ class Form extends Component {
       " current page number: " + this.state.current_page_number)
     let next_page_no = this.state.current_page_number;
     next_page_no++
-    console.log("next page number: " + next_page_no)
+    // console.log("next page number: " + next_page_no)
     fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + next_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
@@ -156,14 +176,13 @@ class Form extends Component {
         has_previous_page: data.has_previous_page
       }))
       .then(results => console.log(results))
-    console.log("done buttonNext: ")
+    // console.log("done buttonNext: ")
   }
 
   render() {
     let buttonPrevious, buttonNext;
     const { serverdata, has_next_page, has_previous_page } = this.state;
-    console.log("in render has_next_page: ", has_next_page)
-    console.log("in render has_previous_page: ", has_previous_page)
+    console.log("Form render author name: ", serverdata)
 
     if (has_previous_page) {
       buttonPrevious = <button className='button' onClick={this.buttonPrevious}
@@ -175,7 +194,7 @@ class Form extends Component {
         style={{ margin: "2px auto", display: "block" }}>Next</button>
     }
 
-    console.log("going to call return")
+    console.log("Form calling return")
     return (
       <form onSubmit={this.handleSubmit}>
         <div class="container">
@@ -184,10 +203,10 @@ class Form extends Component {
             <input type="text" ref={input => this.name = input} placeholder="Enter project name" name="name" value={this.state.project_name} onChange={this.handleChange1} /></span></center>
           <center><span><button class='btn' onClick={this.validate_repository}> validate_repository </button> </span></center>
         </div>
+
         <div className='button__container'>
           <button className='button' onClick={this.buttonClick} >Get data</button>
           {
-            // this.state.onClick == true ?
             this.state.validated == true && this.state.onClick == true ?
               <div className="search-results" style={{ marginTop: 10 }} >
                 <div>
@@ -229,6 +248,7 @@ class Form extends Component {
                 </div>
                 {buttonPrevious}
                 {buttonNext}
+                <Dashboard location='Raipur' serverdata={this.state.serverdata} />
               </div> : null // display message from return statement in place of null
           }
         </div>
@@ -237,6 +257,7 @@ class Form extends Component {
   }
 
   handleChange(event) {
+    console.log("Form handleChange")
     this.setState({
       repo_name: event.target.value,
       validated: false,
@@ -244,28 +265,23 @@ class Form extends Component {
   }
 
   handleChange1(event) {
-    console.log("in handlechange1 ", this.state.project_name)
+    console.log("Form handlechange1 ", this.state.project_name)
     this.setState({
       project_name: event.target.value,
       validated: false,
     });
-    console.log("completed handlechange1 ", this.state.project_name)
   }
 
   handleNoOfRecordsChange(event) {
-    console.log("in handleNoOfRecordsChange event", this.state.display_no_of_records)
+    console.log("Form handleNoOfRecordsChange ", this.state.display_no_of_records)
     this.setState({
       display_no_of_records: event.target.value,
     });
-    console.log("completed handleNoOfRecordsChange event", this.state.display_no_of_records)
     this.buttonClick();
   }
 
   handleSubmit(event) {
     console.log("in handleSubmit event")
-    // alert('Repository name ' + this.state.repo_name + ' and project name ' + this.state.project_name + ' submitted.');
-    // alert(`Repository name ${this.state.repo_name} and project name ${this.state.project_name} submitted.`);
-
     // below method will prevent data from getting lost. Other wise after clicking on alert pop data in
     // box will be lost
     event.preventDefault();

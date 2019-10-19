@@ -28,12 +28,10 @@ class App extends Component {
           <div className="bg">
             <HashRouter>
               <div className="bg">
-                <ul className="header" style={{ fontSize: '15px',  width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
+                <ul className="header" style={{ fontSize: '15px', width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
                   <li><NavLink to="/">Home</NavLink></li>
                    <li><NavLink to="/">search</NavLink></li>
                   <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
-                 // <li><NavLink to="/map1">Map</NavLink></li>
-
                 </ul>
 
                 <Form />
@@ -50,18 +48,16 @@ class App extends Component {
             </HashRouter>
           </div>
           <Footer/>
-
         </form>
-
       </div>
     );
   }
 }
 // componentDidMount() {
-  //     fetch('http://127.0.0.1:8000/git/get_commits?repo_name=cs537&project_name=atomar08')
-  //     .then(res => res.json())
-  //     .then(json => json.products)
-  //     .then(products => this.setState({ 'products': products }))
-  //   }
+//     fetch('http://127.0.0.1:8000/git/get_commits?repo_name=cs537&project_name=atomar08')
+//     .then(res => res.json())
+//     .then(json => json.products)
+//     .then(products => this.setState({ 'products': products }))
+//   }
 
 export default App;
