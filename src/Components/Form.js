@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import Dashboard from "./Dashboard";
 
+
 class Form extends Component {
   constructor() {
     super()
@@ -43,7 +44,7 @@ class Form extends Component {
   validate_repository = () => {
     console.log("in validate repository: ", this.state.repo_name, this.state.project_name);
     if (this.state.repo_name != "" && this.state.project_name != "") {
-      fetch('http://127.0.0.1:8001/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
+      fetch('http://127.0.0.1:8000/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
         this.state.project_name)
         // .then(response => response.text())
         // .then(data => this.setState({
@@ -108,7 +109,7 @@ class Form extends Component {
         has_previous_page: false,
       })
       
-      fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name +
+      fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name +
         '&project_name=' + this.state.project_name + '&records_per_page=' + this.state.display_no_of_records)
         .then(results => results.json())
         .then(data => this.setState({
@@ -147,7 +148,7 @@ class Form extends Component {
     // console.log(this.state.current_page_number)
 
     // console.log("previous page number: " + prev_page_no)
-    fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + prev_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
       .then(data => this.setState({
@@ -166,7 +167,7 @@ class Form extends Component {
     let next_page_no = this.state.current_page_number;
     next_page_no++
     // console.log("next page number: " + next_page_no)
-    fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + next_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
       .then(data => this.setState({
@@ -198,9 +199,10 @@ class Form extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div class="container">
-          <center> <span><input type="text" ref={input => this.reponame = input} placeholder='Enter repo name' name="reponame" value={this.state.repo_name} onChange={this.handleChange} errorMessage="Email is invalid"
+          <center> <span><input type="text" ref={input => this.reponame = input} placeholder='Enter repo name' name="reponame" value={this.state.repo_name} onChange={this.handleChange} 
             emptyMessage="Email is required" required />
-            <input type="text" ref={input => this.name = input} placeholder="Enter project name" name="name" value={this.state.project_name} onChange={this.handleChange1} /></span></center>
+            <input type="text" ref={input => this.name = input} placeholder="Enter project name" name="name" value={this.state.project_name} onChange={this.handleChange1} 
+              emptyMessage="Email is required" required /></span></center>
           <center><span><button class='btn' onClick={this.validate_repository}> validate_repository </button> </span></center>
         </div>
 

@@ -5,12 +5,13 @@ import GoogleMapsContainer from './Components/map1';
 import {
   Route,
   NavLink,
-  HashRouter
+  HashRouter,Switch
 } from "react-router-dom";
 import Home from "./Components/Home";
-// import search from "./Components/search";
+import Search from './Components/Search';
 import Dashboard from "./Components/Dashboard";
-//import BarChart from './Components/BarChart';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 class App extends Component {
@@ -23,28 +24,25 @@ class App extends Component {
   render() {
     return (
       <div>
-
         <form>
           <div className="bg">
             <HashRouter>
               <div className="bg">
-                <ul className="header" style={{ fontSize: '15px', width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
-                  <li><NavLink to="/">Home</NavLink></li>
-                   <li><NavLink to="/">search</NavLink></li>
-                  <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
+                <ul className="header" style={{ fontSize: '15px',  width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
+                  <li><NavLink to="/Form">Home</NavLink></li>
+                   <li><NavLink to="/Search">Search</NavLink></li>
+                   <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
+                  <li><NavLink to="/map1">Map</NavLink></li>
                 </ul>
-
-                <Form />
-
                 <div className="bg">
-                  <Route path="/Form" component={Home} />
-                  {/* <Route path="/search" component={search} /> */}
-                  <Route path="/Dashboard" component={Dashboard} />
+                 <Switch>
+                  <Route exact path="/Form" component={Form} />
+                  <Route path="/Search" component={Search} />
+                  <Route path="/Dashboard" component={Dashboard}/>
                   <Route path="/map1" component={GoogleMapsContainer} />
-
+                  </Switch>
                 </div>
               </div>
-
             </HashRouter>
           </div>
           <Footer/>
