@@ -11,7 +11,7 @@ class BarChart extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://127.0.0.1:8000/git/get_commits?repo_name=cs537&project_name=atomar08`)
+    axios.get(`http://127.0.0.1:8001/git/get_commits?repo_name=cs537&project_name=atomar08`)
       .then(res => {
         const football = res.data;
         let playername = [];

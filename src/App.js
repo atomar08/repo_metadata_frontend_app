@@ -5,7 +5,7 @@ import GoogleMapsContainer from './Components/map1';
 import {
   Route,
   NavLink,
-  HashRouter,Switch
+  HashRouter, Switch
 } from "react-router-dom";
 import Home from "./Components/Home";
 import Search from './Components/Search';
@@ -28,24 +28,24 @@ class App extends Component {
           <div className="bg">
             <HashRouter>
               <div className="bg">
-                <ul className="header" style={{ fontSize: '15px',  width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
+                <ul className="header" style={{ fontSize: '15px', width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
                   <li><NavLink to="/Form">Home</NavLink></li>
-                   <li><NavLink to="/Search">Search</NavLink></li>
-                   <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
+                  <li><NavLink to="/Search">Search</NavLink></li>
+                  <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
                   <li><NavLink to="/map1">Map</NavLink></li>
                 </ul>
                 <div className="bg">
-                 <Switch>
-                  <Route exact path="/Form" component={Form} />
-                  <Route path="/Search" component={Search} />
-                  <Route path="/Dashboard" component={Dashboard}/>
-                  <Route path="/map1" component={GoogleMapsContainer} />
+                  <Switch>
+                    <Route exact path="/Form" component={Form} />
+                    <Route path="/Search" component={Search} />
+                    <Route path="/Dashboard" component={Dashboard} />
+                    <Route path="/map1" component={GoogleMapsContainer} />
                   </Switch>
                 </div>
               </div>
             </HashRouter>
           </div>
-          <Footer/>
+          <Footer />
         </form>
       </div>
     );

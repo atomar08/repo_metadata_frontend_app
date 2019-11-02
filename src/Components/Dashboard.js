@@ -151,7 +151,8 @@ class Dashboard extends Component {
                                     min: 0,
                                 }
                             },
-                        ]}
+                            ]
+                        }
                     }}
                 />
 
