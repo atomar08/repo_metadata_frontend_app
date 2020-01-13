@@ -14,6 +14,7 @@ import Dashboard from "./Components/Dashboard";
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import Spinner from 'react-bootstrap/Spinner';
 import About from './Components/About';
+import PullRequest from './Components/PullRequest'
 
 
 class App extends Component {
@@ -30,12 +31,13 @@ class App extends Component {
           <div className="bg">
             <HashRouter>
               <div className="bg">
-                <ul className="header" style={{ fontSize: '15px', width: '1060px', height: '45px', textAlign: 'right', backgroundColor: 'green' }}>
+                <ul className="header" style={{ fontSize: '15px', width: '1060px', height: '45px', textAlign: 'left', backgroundColor: 'green' }}>
                   <li><NavLink to="">Home</NavLink></li>
                    <li><NavLink to="/Form">Main</NavLink></li>
                   <li><NavLink to="/Search">Search</NavLink></li>
                   <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
                   <li><NavLink to="/Issues">Issues</NavLink></li>
+                  <li><NavLink to="/PullRequest">PullRequest</NavLink></li>
                   <li><NavLink to="/map1">Map</NavLink></li>
                 </ul>
                 <div className="bg">
@@ -43,7 +45,8 @@ class App extends Component {
                     <Route exact path="/Form" component={Form} />
                     <Route path="/Search" component={Search} />
                     <Route path="/Dashboard" component={Dashboard} />
-                   / <Route path="/issues" component={issues} />
+                    <Route path="/issues" component={issues} />
+                    <Route path="/PullRequest" component={PullRequest} />
                     <Route path="/map1" component={GoogleMapsContainer} />
                   </Switch>
                 </div>

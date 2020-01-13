@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 const port = 8000;
-class Issue extends Component {
+class PullRequest extends Component {
   constructor() {
     super()
     this.state = {
@@ -46,7 +46,7 @@ class Issue extends Component {
         </div>
         <div className='button__container'>
           {/* <center><span><button className='button' onClick={this.issue}> Pull Issue </button> </span></center> */}
-          <button className='button' onClick={this.issue}>Get Repo Issue</button>
+          <button className='button' onClick={this.issue}> Pull Issue </button>
           {
             this.state.onClick == true ?
               <div className="search-results" style={{ marginTop: 10 }} >
@@ -165,4 +165,4 @@ class Issue extends Component {
   }
 }
 
-export default Issue;
+export default PullRequest;

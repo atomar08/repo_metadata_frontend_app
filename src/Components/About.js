@@ -7,9 +7,7 @@ class About extends Component {
         <div>
         <div className="title">Welcome to Page Transition App!</div>
         <section>
-          <p>Click the links on header to change routes!
-          nwnwqknqlkwdnlkdwqqndjlndlqwdnwqdnqlkdndnq
-          kwnwsklllllllllnwqkhjbjjjjjjjjjjjhbiiuouu</p>
+          <p>Click the links on header to change routes!</p>
         </section>
         </div>
     );
