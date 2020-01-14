@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import Button from 'react-bootstrap/Button';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 const port = 8000;
 class PullRequest extends Component {
   constructor() {
@@ -11,13 +9,9 @@ class PullRequest extends Component {
       valid_message: "",
       data: null,
       serverdata: [],
-      metadata: [],
       repo_name: '',
       project_name: '',
-      RepoError: '',
-      projectError: '',
       valid: "repository is valid",
-     
     };
 
     // Binding Event Handler: binding is required for all methods which uses const values
@@ -26,7 +20,7 @@ class PullRequest extends Component {
     this.handleChange1 = this.handleChange1.bind(this);
    // this.handleChange2 = this.handleChange2.bind(this);
 
-   this.issue = this.issue.bind(this);
+   this.pull_request = this.pull_request.bind(this);
   }
 
 
@@ -45,8 +39,8 @@ class PullRequest extends Component {
               <center><span><button class='btn' onClick={this.validate_repository}> Validate Repository </button> </span></center>
         </div>
         <div className='button__container'>
-          {/* <center><span><button className='button' onClick={this.issue}> Pull Issue </button> </span></center> */}
-          <button className='button' onClick={this.issue}> Pull Issue </button>
+          <center><span><button className='button' onClick={this.pull_request}> Get Pull Request </button> </span></center>
+          {/* <button className='button' onClick={this.pull_request}> Get Pull Request </button> */}
           {
             this.state.onClick == true ?
               <div className="search-results" style={{ marginTop: 10 }} >
@@ -54,33 +48,35 @@ class PullRequest extends Component {
                   <table class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr class="bg-gray text-white">
-                        <th>Issue No</th>
-                        <th>Issue Id</th>
-                        <th>Issue Title</th>
-                        <th>Issue State</th>
-                        <th>Issue Number</th>
-                        <th>Issue Milestone</th>
-                        <th>Issue Body</th>
-                        <th>Issue User Name</th>
-                        <th>Issue User Login</th>
-                        <th>Issue Comment Count</th>
-                        <th>Issue Created At</th>   
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Number</th>
+                        <th>Created At</th>
+                        <th>Merge Commit SHA</th>
+                        <th>No of Changed Files</th>
+                        <th>No of Deletion</th>
+                        <th>Additions</th>
+                        <th>Mergeable</th>
+                        <th>Merge State</th>
+                        <th>State</th>
+                        <th>Body</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.serverdata.map(issue => (
+                      {this.state.serverdata.map(pr => (
                         <tr>
-                          <td scope="row">{issue.issue_no}</td>
-                          <td>{issue.issue_id}</td>
-                          <td>{issue.issue_title}</td>
-                          <td>{issue.issue_state}</td>
-                          <td>{issue.issue_number}</td>
-                          <td>{issue.issue_milestone}</td>
-                          <td>{issue.issue_body}</td>
-                          <td>{issue.issue_user_name}</td>
-                          <td>{issue.issue_user_login}</td>
-                          <td>{issue.issue_comment_count}</td>
-                          <td>{issue.issue_created_at}</td>
+                          <td scope="row">{pr.pr_id}</td>
+                          <td>{pr.pr_title}</td>
+                          <td>{pr.pr_number}</td>
+                          <td>{pr.pr_created_at}</td>
+                          <td>{pr.pr_merge_commit_sha}</td>
+                          <td>{pr.pr_no_of_changed_files}</td>
+                          <td>{pr.pr_no_of_deletion}</td>
+                          <td>{pr.pr_additions}</td>
+                          <td>{pr.pr_is_mergeable.toString()}</td>
+                          <td>{pr.pr_mergeable_state}</td>
+                          <td>{pr.pr_state}</td>
+                          <td>{pr.pr_body}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -123,16 +119,16 @@ class PullRequest extends Component {
       .then(body => console.log("validate completed: ", this.state.validated));
   }
 
-  issue = () => {
-    console.log("in issue method")
+  pull_request = () => {
+    console.log("in pull request method")
     if (this.state.repo_name != null && this.state.project_name != null) {
       this.setState({ onClick: true })
       console.log("in button click and repo is already validated");
-      fetch('http://127.0.0.1:8000/git/get_repo_issues?repo_name=' + this.state.repo_name +
+      fetch('http://127.0.0.1:8000/git/get_repo_pull_requests?repo_name=' + this.state.repo_name +
       '&project_name=' + this.state.project_name)
         .then(results => results.json())
         .then(data => this.setState({
-          serverdata: data.repo_issues,
+          serverdata: data.pull_request_metadata,
           project_name: data.project_name,
           repo_name: data.repository_name,
         }))
