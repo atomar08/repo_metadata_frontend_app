@@ -5,12 +5,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <div className="title">Welcome to Page Transition App!</div>
+      <div className="title">Welcome to Git-Hub Repository Metadata Analysis App.</div>
       <section>
-        <p>Click the links on header to change routes!</p>
+        <p>Click tabs to access any functionality.</p>
       </section>
       </div>
-      
     );
   }
 }

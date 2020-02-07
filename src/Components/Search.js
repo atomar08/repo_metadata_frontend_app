@@ -78,7 +78,7 @@ class Search extends Component {
 
   validate_repository = () => {
     console.log("in validate repository: ", this.state.validated);
-    fetch('http://127.0.0.1:8001/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch('http://127.0.0.1:8000/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name)
       // .then(response => response.text())
       // .then(data => this.setState({
@@ -110,7 +110,7 @@ class Search extends Component {
     if (this.state.repo_name != null && this.state.project_name != null && this.state.commit_id != null) {
       this.setState({ onClick: true })
       console.log("in button click and repo is already validated");
-      fetch('http://127.0.0.1:8001/git/get_commits_id?repo_name=' + this.state.repo_name +
+      fetch('http://127.0.0.1:8000/git/get_commits_id?repo_name=' + this.state.repo_name +
         '&project_name=' + this.state.project_name + '&commit_id=' + this.state.commit_id)
         .then(results => results.json())
         .then(data => this.setState({
