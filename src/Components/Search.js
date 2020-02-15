@@ -37,7 +37,7 @@ class Search extends Component {
               emptyMessage="Email is required" required /></center> */}
         </div>
         <div className='button__container'>
-          <center><span><button class='btn' onClick={this.search_data}> Search </button> </span></center>
+          <button class='button' onClick={this.search_data}> Search </button>
           {
             this.state.onClick == true ?
               <div className="search-results" style={{ marginTop: 10 }} >
