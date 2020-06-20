@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
     <meta charset="utf-8">
     <div id="container"></div>
     <!-- This element's contents will be replaced with your component. -->
@@ -9,14 +14,39 @@
     <br>
     <div class="move-me move-me-2">steps(4, start)</div>
     <br> -->
-    </head>
-    <div class="move-me move-me-1">
-        <marquee></marquee> <Image src="https://cdn.pixabay.com/photo/2014/05/03/00/09/landscape-336542_960_720.jpg"
-        style="width:1100px;height:170px" className="header-image" /></marquee><marquee>Welcome to the application</marquee> 
+    
+    <div id="example1"></div>
+       
+      <div> <marquee><b>Welcome to the application</b></marquee> 
     </div>
+</head>
 <body>
 <div id="App"></div>
-
+<script>
+$(document).ready(function(){
+  // Activate Carousel with a specified interval
+  $("#myCarousel").carousel({interval: 2000});
+        
+  // Enable Carousel Indicators
+  $(".item1").click(function(){
+    $("#myCarousel").carousel(0);
+  });
+  $(".item2").click(function(){
+    $("#myCarousel").carousel(1);
+  });
+  $(".item3").click(function(){
+    $("#myCarousel").carousel(2);
+  });
+    
+  // Enable Carousel Controls
+  $(".carousel-control-prev").click(function(){
+    $("#myCarousel").carousel("prev");
+  });
+  $(".carousel-control-next").click(function(){
+    $("#myCarousel").carousel("next");
+  });
+});
+</script>
 
 </body>
 

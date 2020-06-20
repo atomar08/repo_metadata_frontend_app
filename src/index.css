@@ -2,71 +2,40 @@ h1, h2, p, ul, li {
   font-family: sans-serif;
 }
 
-ul.header li {
-  display: inline;
-  list-style-type: none;
-  margin: 580;
+
+
+#example1 {
+  background: url('https://cdn.pixabay.com/photo/2014/05/03/00/09/landscape-336542_960_720.jpg'),url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxq6OVcIIZqG94oL9Gexiaod1P_iKUgiIyYs3l3F8YzC6eRX3iM0Kopwql&usqp=CAU&ec=45673586');
+  background-position: right bottom, left top;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
+  padding: 115px;
+  background-attachment: fixed;
 }
 
-ul.header {
-  background-color: #225;
-  padding: 1200;
+/*"https://cdn.pixabay.com/photo/2014/05/03/00/09/landscape-336542_960_720.jpg"*/
+ 
+
+
+
+
+a:hover, a:active {
+  background-color:lightyellow;
 }
 
-ul.header li a {
-  color: #ddd;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 8px;
-  display: inline-block;
+
+
+
+
+ul.topnav li.right {float: right;}
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {float: none;}
 }
 
-/* .content {
-  background-color:#BBB;
-  padding: 0px;
-} */
-
-.content h2 {
-  padding: 100;
-  margin: 0;
-}
-
-.content li {
-  margin-bottom: 5px;
-}
-
-table td {
-  font-size: 14px;
-  font-weight: normal;
-  padding: 10px;
-  border: 10px solid #DDD;
-}
-
-h6 {
-  line-height: 4.5;
-}
-
-/* .navbar {
- transition: background .5s ease-in-out,padding .5s ease-in-out;
- } */
-
-/* footer{
- position: relative;
- left:0;
- bottom:0;
- right:0;
- padding-bottom:100px;
- background-repeat: repeat;
-} */
- label {
- color: #fff!important;
- }
- .button__container {
-   margin-top: 70px;
-   text-align: center;
- }
+ul.topnav li {float: left;}
  .button {
-   background-color:grey;
+   background-color:green;
    border: none;
    color: white;
    position:left;
@@ -74,223 +43,160 @@ h6 {
    height: 40px;
    width: 180px;
  }
- move-me {
-   display: inline-block;
-   padding: 0px;
-   color: red;
-   position: 120px;
-   margin: 0 0 0px 0;
- }
- .move-me-1 {
-   animation: move-in-steps 8s steps(4) infinite;
- }
- .move-me-2 {
-   animation: move-in-steps 8s steps(4, start) infinite;
- }
- .move-me-3 {
-   animation: move-in-steps 8s infinite;
- }
+ ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 40;
+  height:60px;
+  overflow: hidden;
+  background-color:green;
+}
 
-label {
-  color: #fff!important;
+.column {
+  float: left;
+  width: 49.1%;
+  padding: 5px;
+}
+
+Clear floats after the columns */
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+} 
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 70%;
+  }
 }
 
 .button__container {
-  margin-top: 70px;
+  margin-top: 170px;
   text-align: center;
 }
 
-.button {
-  background-color: grey;
-  border: none;
-  color: white;
-  position: left;
-  font-size: 16px;
-  height: 40px;
-  width: 180px;
+.container
+{
+  margin-top: 170px;
+  text-align: center;
 }
 
-move-me {
-  display: inline-block;
-  padding: 0px;
-  color: white;
-  position: 120px;
-  margin: 0 0 0px 0;
-}
-
-.move-me-1 {
-  animation: move-in-steps 8s steps(4) infinite;
-}
-
-.move-me-2 {
-  animation: move-in-steps 8s steps(4, start) infinite;
-}
-
-.move-me-3 {
-  animation: move-in-steps 8s infinite;
+* {
+  box-sizing: border-box;
 }
 
 body {
-  animation: color-me-in 5s infinite;
-}
-
-@keyframes move-in-steps {
-  100% {
-    background: white;
-  }
-  100% {
-    background: white;
-  }
-  /* #page-container {
-  position: relative;
-  min-height: 100vh;
-} */
-  #content-wrap {
-    padding-bottom: 2.5rem;
-    /* Footer height */
-  }
-  #footer {
-    position: relative;
-    bottom: 100;
-    width: 100%;
-    height: 2.5rem;
-  }
-}
-
-/* Footer height
-}
- }
-
-
- /* html, body {
- 	height:100%;
- } */
-
-.bg {
-   background-image: url("");
-   background-position: center;
-   background-repeat: repeat;
-   background-size: cover;
-   background-color: "";
-   height: absolute;
- }
-
-/* .bg {
-   background-image: url();
-   height: 80vh;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-color: "";
- } */
-
-/* @import url('');
- body {
- 	width: 100%;
- 	background: #;
- 	overflow-x: hidden;
- 	overflow-y: auto;
- } */
-
-span {
-  font-family: Montserrat;
-  font-size: 0.5em;
-  color: #fCC;
-}
-
-#header {
-  position: relative;
-  z-index: 2000;
-  width: 400%;
-  top: 10px;
-}
-
-#header h1 {
-  font-size: 30px;
-  font-family: Orbitron;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  background: #000;
-}
-
-#navigation {
-  margin-top: 20px;
-  width: 405px;
-  display: block;
-  list-style: none;
-  z-index: 3;
-}
-
-.content {
-  right: 770px;
-  left: 0px;
-  top: 270px;
-  position: absolute;
-  padding-bottom: 10px;
-}
-
-.content h2 {
-  font-size: 10px;
-  font-family: Orbitron;
-  padding: 0px 0px 0px 0px;
-  margin-top: 50px;
-  color: #fff;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
-}
-
-h3 {
-  color: #fff;
-}
-
-.content p {
-  font-size: 13px;
+  font-family: Arial;
   padding: 10px;
-  line-height: 14px;
-  color: #fff;
-  display: inline-block;
-  border: 1px solid #007CBF;
-  padding: 0px;
-  margin: 3px 0px;
+  background: #f1f1f1;
 }
 
-.button-1 {
-  font-family: Montserrat;
-  display: inline-block;
-  padding: 20px 40px;
-  margin: 10px 0;
-  position: left;
-  color: #fff;
-  border: 1px solid #fff;
-  color: #fff;
+/* Header/Blog Title */
+
+/* Style the top navigation bar */
+.topnav {
   overflow: hidden;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  background-color: #333;
 }
 
-.button-1:before {
-  font-family: Montserrat;
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: lightsalmon;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 15%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+}
+
+/* Fake image */
+
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
   content: "";
-  z-index: -1;
-  position: left;
-  width: 10%;
-  height: 10%;
-  top: 0;
-  left: 10%;
-  background-color: #007CBF;
-  -webkit-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  display: table;
+  clear: both;
 }
 
-.button-1:hover {
-  color: #fcf;
+/* Footer */
+.footer {
+  padding: 30px;
+  text-align: center;
+  background: green;
+  margin-top: 20px;
+  position: relative;
+  color:black;
 }
 
-.button-1:hover:before {
-  left: -00;
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
 }
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .topnav a {
+    width: 80%;
+    padding: 0;
+  }
+}
+
+ 
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -198,10 +198,10 @@ class Form extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div class="container">
-          <center> <span><input type="text" ref={input => this.reponame = input} placeholder='Enter repo name' name="reponame" value={this.state.repo_name} onChange={this.handleChange} errorMessage="Email is invalid"
+          <center> <input type="text" ref={input => this.reponame = input} placeholder='Enter repo name' name="reponame" value={this.state.repo_name} onChange={this.handleChange} errorMessage="Email is invalid"
             emptyMessage="Email is required" required />
-            <input type="text" ref={input => this.name = input} placeholder="Enter project name" name="name" value={this.state.project_name} onChange={this.handleChange1} /></span></center>
-          <center><span><button class='btn' onClick={this.validate_repository}> validate_repository </button> </span></center>
+            <input type="text" ref={input => this.name = input} placeholder="Enter project name" name="name" value={this.state.project_name} onChange={this.handleChange1} /></center><br></br>
+          <center><button class='button' onClick={this.validate_repository}> validate_repository </button> </center>
         </div>
 
         <div className='button__container'>
@@ -212,7 +212,7 @@ class Form extends Component {
                 <div>
                   <table class="table table-bordered table-hover table-striped">
                     <thead>
-                      <tr class="bg-gray text-white">
+                      <tr class="bg-black text-black">
                         <th>Commit No</th>
                         <th>Commit Id</th>
                         <th>Commit Date</th>

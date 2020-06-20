@@ -36,7 +36,7 @@ class PullRequest extends Component {
 
           {/* <input type="text" ref={input => this.name = input} placeholder="Enter project name" name="name" value={this.state.project_name} onChange={this.handleChange1} errorMessage="Email is invalid"
               emptyMessage="Email is required" required /></center> */}
-              <center><span><button class='btn' onClick={this.validate_repository}> Validate Repository </button> </span></center>
+              <center><span><button class='button' onClick={this.validate_repository}> Validate Repository </button> </span></center>
         </div>
         <div className='button__container'>
           <center><span><button className='button' onClick={this.pull_request}> Get Pull Request </button> </span></center>
