@@ -91,7 +91,7 @@ class PullRequest extends Component {
 
   validate_repository = () => {
     console.log("innnnnn issues validate repository: ", this.state.validated);
-    fetch('http://127.0.0.1:8000/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name)
       // .then(response => response.text())
       // .then(data => this.setState({
@@ -124,7 +124,7 @@ class PullRequest extends Component {
     if (this.state.repo_name != null && this.state.project_name != null) {
       this.setState({ onClick: true })
       console.log("in button click and repo is already validated");
-      fetch('http://127.0.0.1:8000/git/get_repo_pull_requests?repo_name=' + this.state.repo_name +
+      fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/get_repo_pull_requests?repo_name=' + this.state.repo_name +
       '&project_name=' + this.state.project_name)
         .then(results => results.json())
         .then(data => this.setState({

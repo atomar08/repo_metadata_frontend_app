@@ -43,7 +43,7 @@ class Form extends Component {
   validate_repository = () => {
     console.log("in validate repository: ", this.state.repo_name, this.state.project_name);
     if (this.state.repo_name != "" && this.state.project_name != "") {
-      fetch('http://127.0.0.1:8000/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
+      fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
         this.state.project_name)
         // .then(response => response.text())
         // .then(data => this.setState({
@@ -81,7 +81,7 @@ class Form extends Component {
   //   if (this.state.repo_name != "" && this.state.project_name != "" && this.state.validated) {
   //     this.setState({ onClick: true })
   //     console.log("in button click and repo is already validated");
-  //     fetch('http://127.0.0.1:8001/git/read_commits_page?repo_name=' + this.state.repo_name +
+  //     fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/read_commits_page?repo_name=' + this.state.repo_name +
   //       '&project_name=' + this.state.project_name + '&records_per_page=' + this.state.display_no_of_records)
   //       .then(results => results.json())
   //       .then(data => this.setState({
@@ -108,7 +108,7 @@ class Form extends Component {
         has_previous_page: false,
       })
 
-      fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name +
+      fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/read_commits_page?repo_name=' + this.state.repo_name +
         '&project_name=' + this.state.project_name + '&records_per_page=' + this.state.display_no_of_records)
         .then(results => results.json())
         .then(data => this.setState({
@@ -147,7 +147,7 @@ class Form extends Component {
     // console.log(this.state.current_page_number)
 
     // console.log("previous page number: " + prev_page_no)
-    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + prev_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
       .then(data => this.setState({
@@ -166,7 +166,7 @@ class Form extends Component {
     let next_page_no = this.state.current_page_number;
     next_page_no++
     // console.log("next page number: " + next_page_no)
-    fetch('http://127.0.0.1:8000/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
+    fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/read_commits_page?repo_name=' + this.state.repo_name + '&project_name=' +
       this.state.project_name + '&page_number=' + next_page_no + '&records_per_page=' + this.state.display_no_of_records)
       .then(results => results.json())
       .then(data => this.setState({
