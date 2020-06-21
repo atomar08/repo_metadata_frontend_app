@@ -44,7 +44,7 @@ class Search extends Component {
                 <div>
                   <table class="table table-bordered table-hover table-striped">
                     <thead>
-                      <tr class="bg-gray text-white">
+                      <tr class="bg-gray text-black">
                         <th>Commit No</th>
                         <th>Commit Id</th>
                         <th>Commit Date</th>
@@ -98,8 +98,8 @@ class Search extends Component {
           this.setState({
             validated: false,
             onClick: false,
-            repo_name: "",
-            project_name: ""
+            // repo_name: "",
+            // project_name: ""
           })
         }
       })

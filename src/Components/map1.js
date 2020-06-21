@@ -48,8 +48,8 @@ class GoogleMapsContainer extends React.Component {
         google = { this.props.google }
         onClick = { this.onMapClick }
         zoom = { 10 }
-        initialCenter = {{ lat: 39.648209, lng: -75.711185 }}
-      >
+        initialCenter = {{ lat: 39.648209, lng: -75.711185 }}>
+      
         <Marker
           onClick = { this.onMarkerClick }
           title = { 'Changing Colors Garage' }
@@ -80,5 +80,5 @@ class GoogleMapsContainer extends React.Component {
   }
 }
 export default GoogleApiWrapper({
-    api: (process.env.GOOGLE_API_KEY_GOES_HERE)
+    api: (process.env.AIzaSyD6g37yWIUm_hUfmbm5rh0DrH94rb7xjJk)
 })(GoogleMapsContainer)

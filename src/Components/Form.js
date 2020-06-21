@@ -63,8 +63,8 @@ class Form extends Component {
             this.setState({
               validated: false,
               onClick: false,
-              repo_name: "",
-              project_name: ""
+              // repo_name: "",
+              // project_name: ""
             })
           }
         })

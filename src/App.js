@@ -54,9 +54,9 @@ class App extends Component {
               
             </HashRouter>
        
-          
-          <Footer />
+            <Footer />
         </form>
+        
       </div>
     );
   }
