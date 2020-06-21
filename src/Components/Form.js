@@ -41,7 +41,7 @@ class Form extends Component {
   }
 
   validate_repository = () => {
-    console.log("in validate repository: ", this.state.repo_name, this.state.project_name);
+    console.log("in validate repository: ", this.state.repo_name, this.state.project_name, process.env.REACT_APP_BACKEND_SERVER, process.env.NODE_ENV);
     if (this.state.repo_name != "" && this.state.project_name != "") {
       fetch(process.env.REACT_APP_BACKEND_SERVER + '/git/validate_repository?repo_name=' + this.state.repo_name + '&project_name=' +
         this.state.project_name)
