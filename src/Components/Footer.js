@@ -5,7 +5,7 @@ const Footer = () => {
   return (
   
       <div className="footer">
-        <center>  &copy; {new Date().getFullYear()} Copyright: <a  href="https://www.github.com"> github.com </a></center>
+        <center>  &copy; {new Date().getFullYear()} Copyright: <a className="topnav" href="https://www.github.com"> github.com </a></center>
         
        
       </div>

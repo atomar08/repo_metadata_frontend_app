@@ -32,7 +32,7 @@ class App extends Component {
             <HashRouter>
               <div className="bg">
                 <ul className="topnav" >
-                  <li><NavLink to="/Home"><b>Home</b></NavLink></li>
+                  <li><NavLink to="/"><b>Home</b></NavLink></li>
                    <li><NavLink to="/Form"><b>Commits</b></NavLink></li>
                   <li><NavLink to="/Search"><b>Search</b></NavLink></li>
                   <li><NavLink to="/Issues"><b>Issues</b></NavLink></li>
@@ -42,7 +42,7 @@ class App extends Component {
                 </ul>
                
                   <Switch>
-                    <Route exact path="/Home" component={Home} />
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/Form" component={Form} />
                     <Route path="/Search" component={Search} />
                     
