@@ -4,8 +4,8 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 const Footer = () => {
   return (
   
-      <div className="footer">
-        <center>  &copy; {new Date().getFullYear()} Copyright: <a className="topnav" href="https://www.github.com"> github.com </a></center>
+      <div className="footer ">
+        <center>&copy; {new Date().getFullYear()} Copyright: <a className="topnav" href="https://www.github.com"> github.com </a></center> 
         
        
       </div>

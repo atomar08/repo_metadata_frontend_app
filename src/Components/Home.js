@@ -6,11 +6,6 @@ class Home extends Component {
     return (
       <React.Fragment>
 
-
-    
-
-
-
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
   {/* <!-- Indicators --> */}
@@ -46,7 +41,8 @@ class Home extends Component {
       <p>The application is providing various functionalities related to github operations. Mainly its fetching githubs public repositories metadaa with a very easy approach.
          User needs to provide just project name and repository name and he will get whole logs related to that specific repo.
          Application is also very useful to anaylse commits based on graphical user interface charts. User can concise that query result by using search functionalities. This search is based on commid-id.Not only this pull request and issues of the reposities can also be fetched used the application. 
-         To provide better use of the application current location of the user can also be identified using location feature of the application.
+         To provide better use of the application current location of the user can also be identified using location feature of the application. It is a MVC based application. Which is
+         very useful in analysing organization data on daily basis.
          </p> 
 
 
